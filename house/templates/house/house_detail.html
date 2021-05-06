@@ -1,0 +1,13 @@
+{% extends 'house/base.html' %}
+
+{% block content %}
+    <div class="house">
+        {% if house.created_date %}
+            <div class="date">
+                {{ house.created_date }}
+            </div>
+        {% endif %}
+        <h1>{{ house.title }}</h1>
+        <p>{{ house.houseguid|linebreaksbr }}</p>
+    </div>
+{% endblock %}

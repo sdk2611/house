@@ -1,17 +1,13 @@
-<html>
-    <head>
-        <title>ИС Резидент</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Объекты жилого фонда</a></h1>
-        </div>
-        {% for house in houses %}
-            <div>
-                <p>created_date: {{ house.created_date }}</p>
-                <h2><a href="">{{ house.title }}</a></h2>
-                <p>{{ house.houseguid|linebreaksbr }}</p>
+{% extends 'house/base.html' %}
+
+{% block content %}
+    {% for house in houses %}
+        <div class="house-detail">
+            <div class="date">
+                <p>Создано: {{ house.created_date }}</p>
             </div>
-        {% endfor %}
-    </body>
-</html>
+            <h1><a href="{% url 'house_detail' pk=house.pk %}">{{ house.title }}</a></h1>
+            <p>{{ house.houseguid|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
