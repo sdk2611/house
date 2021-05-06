@@ -7,6 +7,9 @@
                 {{ house.created_date }}
             </div>
         {% endif %}
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'house_edit' pk=house.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
         <h1>{{ house.title }}</h1>
         <p>{{ house.houseguid|linebreaksbr }}</p>
     </div>
