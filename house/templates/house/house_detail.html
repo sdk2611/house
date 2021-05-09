@@ -2,15 +2,12 @@
 
 {% block content %}
     <div class="house">
-        {% if house.created_date %}
-            <div class="date">
-                {{ house.created_date }}
-            </div>
-        {% endif %}
+        <h1>{{ house.title }}</h1>
         {% if user.is_authenticated %}
             <a class="btn btn-default" href="{% url 'house_edit' pk=house.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}
-        <h1>{{ house.title }}</h1>
-        <p>{{ house.houseguid|linebreaksbr }}</p>
+        <form method="GET" class="house-form">{% csrf_token %}
+            {{ form.as_p }}
+        </form>
     </div>
 {% endblock %}

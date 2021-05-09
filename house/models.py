@@ -111,7 +111,7 @@ class house(models.Model):
         verbose_name = 'Часовая зона',
     )
     #    CulturalHeritage 	boolean 	1..1 	Наличие у дома статуса объекта культурного наследия
-    CulturalHeritage = models.BooleanField(default = False, verbose_name = 'Статус объекта кальтурного наследия')
+    CulturalHeritage = models.BooleanField(default = False, verbose_name = 'Статус объекта культурного наследия')
 
     #   Управляющая организация
     management_org = models.ForeignKey(             

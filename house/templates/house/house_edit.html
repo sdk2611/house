@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Редактирование дома</h1>
     <form method="POST" class="house-form">{% csrf_token %}
-        {{ form.as_ul }}
+        {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Сохранить</button>
     </form>
 {% endblock %}
