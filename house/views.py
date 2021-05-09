@@ -1,12 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.core.paginator import Paginator
 from .models import house
 from .forms import HouseForm
 
-# Create your views here.
+# Create your views here. 
 def house_list(request):
-    houses = house.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-    return render(request, 'house/house_list.html', {'houses' : houses})
+    houses = house.objects.order_by('title')
+    paginator = Paginator(houses, 20) # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'house/house_list.html', {'page_obj': page_obj})
+#    return render(request, 'house/house_list.html', {'houses' : houses})
 
 def house_detail(request, pk):
     _house = get_object_or_404(house, pk=pk)

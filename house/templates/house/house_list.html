@@ -1,13 +1,32 @@
 {% extends 'house/base.html' %}
 
 {% block content %}
-    {% for house in houses %}
+    {% for house in page_obj.object_list %}
         <div class="house-detail">
-            <div class="date">
-                <p>Создано: {{ house.created_date }}</p>
-            </div>
             <h1><a href="{% url 'house_detail' pk=house.pk %}">{{ house.title }}</a></h1>
-            <p>{{ house.houseguid|linebreaksbr }}</p>
+            <p>Тип дома: {{ house.get_house_type_display }}</p>
+            <p>Этажей: {{ house.FloorCount}}</p>
+            <p>Подъездов: {{Entrance.house_set.all|length}}</p>
+            <p>Помещений: {{ResidentialPremises.house_set.all|length}}</p>
+            <p>Дата ввода в эксплуатацию: {{ house.UsedYear|date:"Y" }}</p>
         </div>
     {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; Первая</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock %}
