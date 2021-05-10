@@ -55,9 +55,9 @@ class house(models.Model):
     #	Номер дома – Строка, содержащая номер дома, до 20 символов
     housenum = models.CharField(max_length = 20, verbose_name = 'Номер дома')
     #	Номер корпуса – Строка, содержащая номер корпуса, до 10 символов
-    buildnum = models.CharField(max_length = 10, blank = True, verbose_name = 'Номер корпуса')
+    buildnum = models.CharField(max_length = 10, blank = True, null = True, verbose_name = 'Номер корпуса')
     #	Номер строения – Строка, содержащая номер строения, до 10 символов
-    strucnum = models.CharField(max_length = 10, blank = True, verbose_name = 'Номер строения')
+    strucnum = models.CharField(max_length = 10, blank = True, null = True, verbose_name = 'Номер строения')
     #   Тип дома
     house_type = models.CharField(
         max_length = 1,
@@ -77,6 +77,7 @@ class house(models.Model):
         max_length = 1,
         choices = STRSTATUSES,
         blank = True,
+        null = True, 
         verbose_name = 'Признак строения',
     )
     #   Кадастровый номер
@@ -96,6 +97,7 @@ class house(models.Model):
         choices = LIFECYCLESTAGES,
         default = '1',
         blank = True,
+        null = True, 
         verbose_name = 'Стадия жизненного цикла',
     )
     #   UsedYear 	UsedYearType 	1..1 	Год ввода в эксплуатацию

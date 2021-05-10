@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import house
 from .models import *
 
-from import_export import resources
+from import_export import resources, fields
 from import_export.admin import ImportExportModelAdmin, ImportMixin
 
 class HouseResource(resources.ModelResource):
