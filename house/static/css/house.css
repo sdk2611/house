@@ -71,18 +71,18 @@ p, .btn {
     margin-bottom: 40px;
   }
   
-  form div > div > p {
+  form p {
     display: table-row;
   }
 
-  form div > div > p > label, form div > div > p > input, form div > div > p > select {
+  form p > label, form p > input, form  p > select {
     display: table-cell;
     padding: 5px 5px 5px 5px;
     margin: 2px;
     text-align: left;
 }
   
-   form  div > div > p > input {
+   form  p > input {
     width: 100%;
   }
 

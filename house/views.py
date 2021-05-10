@@ -2,9 +2,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .models import house
-from .forms import HouseForm
+from .forms import HouseForm, HouseFormView
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 
+class DetailView(generic.DetailView):
+    model = house
+    template_name = 'house/house_detail.html'
+    
 # Create your views here. 
 def house_list(request):
     houses = house.objects.order_by('title')
@@ -16,13 +21,8 @@ def house_list(request):
 @login_required
 def house_detail(request, pk):
     _house = get_object_or_404(house, pk=pk)
-    return render(request, 'house/house_detail.html', {'house': _house})
-
-# @login_required
-# def house_detail(request, pk):
-#     _house = get_object_or_404(house, pk=pk)
-#     _form = HouseForm(request.GET, instance=_house)
-#     return render(request, 'house/house_edit.html', {'form': _form})
+    _form = HouseFormView(instance=_house)
+    return render(request, 'house/house_detail.html', context={'form': _form, 'house': _house})
 
 @login_required
 def house_new(request):
