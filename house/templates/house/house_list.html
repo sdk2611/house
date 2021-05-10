@@ -1,32 +1,46 @@
 {% extends 'house/base.html' %}
 
 {% block content %}
-    {% for house in page_obj.object_list %}
-        <div class="house-detail">
-            <h1><a href="{% url 'house_detail' pk=house.pk %}">{{ house.title }}</a></h1>
-            <p>Тип дома: {{ house.get_house_type_display }}</p>
-            <p>Этажей: {{ house.FloorCount}}</p>
-            <p>Подъездов: {{Entrance.house_set.all|length}}</p>
-            <p>Помещений: {{ResidentialPremises.house_set.all|length}}</p>
-            <p>Дата ввода в эксплуатацию: {{ house.UsedYear|date:"Y" }}</p>
-        </div>
-    {% endfor %}
-
-    <div class="pagination">
-        <span class="step-links">
+    <div class="pagination center-block">
+        <h3><span class="step-links">
             {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; Первая</a>
-                <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                <a class="btn btn-default" href="?page=1"><span title="Первая" class="glyphicon glyphicon-fast-backward"></span></a>
+                <a class="btn btn-default" href="?page={{ page_obj.previous_page_number }}"><span title="Предыдущая" class="glyphicon glyphicon-hand-left"></span></a>
             {% endif %}
 
             <span class="current">
-                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+                <a class="btn btn-default" href="?page={{ page_obj.next_page_number }}"><span title="Следующая" class="glyphicon glyphicon-hand-right"></span></a>
+                <a class="btn btn-default" href="?page={{ page_obj.paginator.num_pages }}"><span title="Последняя" class="glyphicon glyphicon-fast-forward"></span></a>
             {% endif %}
-        </span>
+        </span></h3>
+    </div>
+    {% for house in page_obj.object_list %}
+        <div class="house-detail">
+            <h1><a href="{% url 'house_detail' pk=house.pk %}">{{ house.address }}</a></h1>
+            <p>Полный адрес: {{ house.fullAddress }}, Тип дома: {{ house.get_house_type_display }}, Этажей: {{ house.FloorCount}}, Подъездов: {{Entrance.house_set.all|length}},
+            Помещений: {{ResidentialPremises.house_set.all|length}}</p>
+            <p>Общая площадь: {{ house.TotalSquare}} кв. м., Дата ввода в эксплуатацию: {{ house.UsedYear|date:"Y" }}</p>
+        </div>
+    {% endfor %}
+    <div class="pagination center-block">
+        <h3><span class="step-links">
+            {% if page_obj.has_previous %}
+                <a class="btn btn-default" href="?page=1"><span title="Первая" class="glyphicon glyphicon-fast-backward"></span></a>
+                <a class="btn btn-default" href="?page={{ page_obj.previous_page_number }}"><span title="Предыдущая" class="glyphicon glyphicon-hand-left"></span></a>
+            {% endif %}
+
+            <span class="current">
+                {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-default" href="?page={{ page_obj.next_page_number }}"><span title="Следующая" class="glyphicon glyphicon-hand-right"></span></a>
+                <a class="btn btn-default" href="?page={{ page_obj.paginator.num_pages }}"><span title="Последняя" class="glyphicon glyphicon-fast-forward"></span></a>
+            {% endif %}
+        </span></h3>
     </div>
 {% endblock %}

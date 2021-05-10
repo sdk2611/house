@@ -43,7 +43,9 @@ class house(models.Model):
     ОБЩИЕ ХАРАКТЕРИСТИКИ МКД
     '''
     #   Адрес строкой
-    title = models.CharField(max_length = 200, verbose_name='Полный адрес')
+    address = models.CharField(max_length = 200, null = True, verbose_name='Адрес')
+    #   Полный Адрес строкой
+    fullAddress = models.CharField(max_length = 200, verbose_name='Полный адрес')
     #   Глобальный уникальный идентификатор дома
     houseguid = models.CharField(max_length = 36, unique=True, verbose_name = 'Идентификатор в ФИАС')   
     #   Уникальный номер дома в ГИС ЖКХ (например, MBp00381)
@@ -127,7 +129,7 @@ class house(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.PROTECT, verbose_name = 'Кем создано')
 
     def __str__(self):
-        return self.title
+        return self.address
 
 # ПОДЪЕЗДЫ
 class Entrance(models.Model):

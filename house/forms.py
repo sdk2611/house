@@ -25,7 +25,8 @@ class HouseFormView(forms.ModelForm):
 
     def __init__(self, *args, **kwargs): 
         super(HouseFormView, self).__init__(*args, **kwargs)                       
-        self.fields['title'].disabled = True
+        self.fields['address'].disabled = True
+        self.fields['fullAddress'].disabled = True
         self.fields['houseguid'].disabled = True
         self.fields['UniqueNumber'].disabled = True
         self.fields['aoguid'].disabled = True

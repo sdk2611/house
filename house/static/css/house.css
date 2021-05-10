@@ -99,3 +99,7 @@ p, .btn {
      color: red;
      content: " *";
  }
+
+ .pagination {
+     text-align: center;
+ }

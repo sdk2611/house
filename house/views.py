@@ -5,20 +5,16 @@ from .models import house
 from .forms import HouseForm, HouseFormView
 from django.contrib.auth.decorators import login_required
 from django.views import generic
+from django.db.models import F
 
-class DetailView(generic.DetailView):
-    model = house
-    template_name = 'house/house_detail.html'
-    
 # Create your views here. 
 def house_list(request):
-    houses = house.objects.order_by('title')
-    paginator = Paginator(houses, 20) # Show 25 contacts per page.
+    houses = house.objects.order_by('address')
+    paginator = Paginator(houses, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'house/house_list.html', {'page_obj': page_obj})
 
-@login_required
 def house_detail(request, pk):
     _house = get_object_or_404(house, pk=pk)
     _form = HouseFormView(instance=_house)
