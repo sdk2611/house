@@ -83,7 +83,7 @@ class house(models.Model):
     #   Кадастровый номер
     cadnum = models.CharField(max_length = 40, verbose_name = 'Кадастровый номер')      
     #   TotalSquare 	PremisesAreaType 	1..1 	Общая площадь здания
-    TotalSquare = models.DecimalField(max_digits=25,decimal_places=4, verbose_name = 'Общая площадь')   
+    TotalSquare = models.DecimalField(max_digits=25,decimal_places=4, null=True, verbose_name = 'Общая площадь')   
     #   State 	nsiRef 	1..1 	Состояние (НСИ 24)
     State = models.CharField(                       
         max_length = 1,
@@ -101,11 +101,11 @@ class house(models.Model):
         verbose_name = 'Стадия жизненного цикла',
     )
     #   UsedYear 	UsedYearType 	1..1 	Год ввода в эксплуатацию
-    UsedYear = models.DateField(verbose_name = 'Год ввода в эксплуатацию')
+    UsedYear = models.DateField(null=True, verbose_name = 'Год ввода в эксплуатацию')
     #   FloorCount 	FloorType 	1..1 	Количество этажей
-    FloorCount = models.PositiveSmallIntegerField(verbose_name = 'Количество этажей')
+    FloorCount = models.PositiveSmallIntegerField(null = True, verbose_name = 'Количество этажей')
     #    UndergroundFloorCount 	UndergroundFloorType 	1..1 	Количество подземных этажей
-    UndergroundFloorCount = models.PositiveSmallIntegerField(verbose_name = 'Количество подземных этажей')
+    UndergroundFloorCount = models.PositiveSmallIntegerField(null = True, verbose_name = 'Количество подземных этажей')
     #    OlsonTZ 	nsiRef 	1..1 	Часовая зона
     OlsonTZ = models.CharField(
         max_length = 50,
