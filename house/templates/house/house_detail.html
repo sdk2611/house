@@ -2,11 +2,14 @@
 
 {% block content %}
     <div class="house">
-        <h1>{{ house.title }}</h1>
         {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'house_edit' pk=house.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <h1>{{ house.title }} 
+                <a class="btn btn-default" href="{% url 'house_edit' pk=house.pk %}"><span title="Редактировать дом" class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-default" href="{% url 'house_remove' pk=house.pk %}"><span title="Удалить дом" class="glyphicon glyphicon-remove"></span></a></h1>
+        {% else%}
+            <h1>{{ house.title }}</h1>
         {% endif %}
-        <form method="GET" class="house-form">{% csrf_token %}
+        <form method = "GET" class="house-form">
             {{ form.as_p }}
         </form>
     </div>

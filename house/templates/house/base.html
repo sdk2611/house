@@ -20,21 +20,28 @@
     <body>
         <div class="page-header">
             {% if user.is_authenticated %}
-                <a href="{% url 'house_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-                <p class="top-menu">Здравствуйте, {{ user.username }} <small>(<a href="{% url 'logout' %}">Выйти</a>)</small></p>
+                <h2>Здравствуйте, {{ user.username }}</h2>
+                <div class="top-menu"><a href="{% url 'logout' %}"><span title="Выход из системы" class="glyphicon glyphicon-log-out"></span></a></div>
+                <a href="{% url 'house_new' %}" class="top-menu"><span title="Добавить дом" class="glyphicon glyphicon-plus"></span></a>
             {% else %}
-                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+                <p class="top-menu"><a href="{% url 'login' %}"><span title="Вход в систему" class="glyphicon glyphicon-log-in"></span></a></p>
             {% endif %}
             <h1><a href="/">Наши дома</a></h1>
         </div>
-        <div class="content container">
+        <div class="content container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-9">
                 {% block content %}
                 {% endblock %}
                 </div>
-            </div>
+                <div class="col-md-3 border">
+                    <h3>Это новая система для ГБУ Жилищник района Гольяново</h3>
+                    <br>
+                    <h3>Полезные ссылки:</h3>
+                    <br>
+                    <h4><a href="http://xmlcalendar.ru/html.php?y=2021" target="_blank"> ПРОИЗВОДСТВЕННЫЙ КАЛЕНДАРЬ 2021</a></h4>
+                </div>
         </div>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script> -->
     </body>
 </html>

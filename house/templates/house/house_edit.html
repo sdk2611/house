@@ -3,7 +3,15 @@
 {% block content %}
     <h1>Редактирование дома</h1>
     <form method="POST" class="house-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Сохранить</button>
+        <div class="row">
+            <div class="col-md-8">
+                {{ form.as_p }}
+            </div>
+            <div class="col-md-4">
+                <p><button type="submit" class="save btn btn-default">Сохранить</button></p>
+                <br>
+                <p style="display: inline-block; text-align: center;"><h2>Подъезды и помещения</h2></p>
+            </div>
+        </div>
     </form>
 {% endblock %}

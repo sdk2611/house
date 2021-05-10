@@ -13,9 +13,16 @@ def house_list(request):
     page_obj = paginator.get_page(page_number)
     return render(request, 'house/house_list.html', {'page_obj': page_obj})
 
+@login_required
 def house_detail(request, pk):
     _house = get_object_or_404(house, pk=pk)
-    return render(request, 'house/house_detail.html', {'house' : _house})
+    return render(request, 'house/house_detail.html', {'house': _house})
+
+# @login_required
+# def house_detail(request, pk):
+#     _house = get_object_or_404(house, pk=pk)
+#     _form = HouseForm(request.GET, instance=_house)
+#     return render(request, 'house/house_edit.html', {'form': _form})
 
 @login_required
 def house_new(request):
@@ -45,3 +52,9 @@ def house_edit(request, pk):
     else:
         form = HouseForm(instance=_house)
     return render(request, 'house/house_edit.html', {'form': form})
+
+@login_required
+def house_remove(request, pk):
+    _house = get_object_or_404(house, pk=pk)
+    _house.delete()
+    return redirect('house_list')
