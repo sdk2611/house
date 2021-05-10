@@ -25,28 +25,28 @@ class HouseFormView(forms.ModelForm):
 
     def __init__(self, *args, **kwargs): 
         super(HouseFormView, self).__init__(*args, **kwargs)                       
-        self.fields['address'].disabled = True
-        self.fields['fullAddress'].disabled = True
-        self.fields['houseguid'].disabled = True
-        self.fields['UniqueNumber'].disabled = True
-        self.fields['aoguid'].disabled = True
-        self.fields['oktmo'].disabled = True
-        self.fields['housenum'].disabled = True
-        self.fields['buildnum'].disabled = True
-        self.fields['strucnum'].disabled = True
+        self.fields['address'].widget.attrs['readonly'] = True
+        self.fields['fullAddress'].widget.attrs['readonly'] = True
+        self.fields['houseguid'].widget.attrs['readonly'] = True
+        self.fields['UniqueNumber'].widget.attrs['readonly'] = True
+        self.fields['aoguid'].widget.attrs['readonly'] = True
+        self.fields['oktmo'].widget.attrs['readonly'] = True
+        self.fields['housenum'].widget.attrs['readonly'] = True
+        self.fields['buildnum'].widget.attrs['readonly'] = True
+        self.fields['strucnum'].widget.attrs['readonly'] = True
         self.fields['house_type'].disabled = True
         self.fields['eststatus'].disabled = True
         self.fields['strstatus'].disabled = True
-        self.fields['cadnum'].disabled = True
-        self.fields['TotalSquare'].disabled = True
+        self.fields['cadnum'].widget.attrs['readonly'] = True
+        self.fields['TotalSquare'].widget.attrs['readonly'] = True
         self.fields['State'].disabled = True
         self.fields['LifeCycleStage'].disabled = True
-        self.fields['UsedYear'].disabled = True
-        self.fields['FloorCount'].disabled = True
-        self.fields['UndergroundFloorCount'].disabled = True
-        self.fields['OlsonTZ'].disabled = True
+        self.fields['UsedYear'].widget.attrs['readonly'] = True
+        self.fields['FloorCount'].widget.attrs['readonly'] = True
+        self.fields['UndergroundFloorCount'].widget.attrs['readonly'] = True
+        self.fields['OlsonTZ'].widget.attrs['readonly'] = True
         self.fields['CulturalHeritage'].disabled = True
         self.fields['management_org'].disabled = True
-        self.fields['created_date'].disabled = True
+        self.fields['created_date'].widget.attrs['readonly'] = True
         self.fields['author'].disabled = True
 
