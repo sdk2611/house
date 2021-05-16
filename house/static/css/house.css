@@ -80,9 +80,11 @@ p, .btn {
     margin-bottom: 40px;
   }
   
-  form p {
-    display: table-row;
-  }
+  @media (min-width: 576px) {
+    form p {
+        display: table-row;
+      } 
+}
 
   form p > label, form p > input, form  p > select {
     display: table-cell;
@@ -90,7 +92,7 @@ p, .btn {
     margin: 2px;
     text-align: left;
 }
-  
+
    form  p > input {
     width: 100%;
   }
