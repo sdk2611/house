@@ -41,7 +41,7 @@ class HouseFormView(forms.ModelForm):
         self.fields['TotalSquare'].widget.attrs['readonly'] = True
         self.fields['State'].disabled = True
         self.fields['LifeCycleStage'].disabled = True
-        self.fields['UsedYear'].widget.attrs['readonly'] = True
+        self.fields['UsedYear'].disabled = True
         self.fields['FloorCount'].widget.attrs['readonly'] = True
         self.fields['UndergroundFloorCount'].widget.attrs['readonly'] = True
         self.fields['OlsonTZ'].widget.attrs['readonly'] = True

@@ -23,7 +23,7 @@
             <h1><a href="{% url 'house_detail' pk=house.pk %}">{{ house.address }}</a></h1>
             <p>Полный адрес: {{ house.fullAddress }}, Тип дома: {{ house.get_house_type_display }}, Этажей: {{ house.FloorCount}}, Подъездов: {{Entrance.house_set.all|length}},
             Помещений: {{ResidentialPremises.house_set.all|length}}</p>
-            <p>Общая площадь: {{ house.TotalSquare|floatformat }} кв. м., Дата ввода в эксплуатацию: {{ house.UsedYear|date:"Y" }}</p>
+            <p>Общая площадь: {{ house.TotalSquare|floatformat }} кв. м., Дата ввода в эксплуатацию: {{ house.UsedYear }}</p>
         </div>
     {% endfor %}
     <div class="pagination center-block">

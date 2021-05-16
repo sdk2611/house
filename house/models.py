@@ -39,6 +39,8 @@ class house(models.Model):
         ('3', 'Капитальный ремонт с отселением'),
         ('4', 'Капитальный ремонт без отселения')
     )
+    year_now = timezone.now().year
+    YEARS = [(year, year) for year in range(year_now, year_now - 200, -1)]
     '''
     ОБЩИЕ ХАРАКТЕРИСТИКИ МКД
     '''
@@ -103,7 +105,13 @@ class house(models.Model):
         verbose_name = 'Стадия жизненного цикла',
     )
     #   UsedYear 	UsedYearType 	1..1 	Год ввода в эксплуатацию
-    UsedYear = models.DateField(null=True, verbose_name = 'Год ввода в эксплуатацию')
+    # UsedYear = models.DateField(null=True, verbose_name = 'Год ввода в эксплуатацию')
+    UsedYear = models.CharField(
+        max_length = 4,
+        choices = YEARS,
+        null=True, 
+        verbose_name = 'Год ввода в эксплуатацию',
+    )
     #   FloorCount 	FloorType 	1..1 	Количество этажей
     FloorCount = models.PositiveSmallIntegerField(null = True, verbose_name = 'Количество этажей')
     #    UndergroundFloorCount 	UndergroundFloorType 	1..1 	Количество подземных этажей
