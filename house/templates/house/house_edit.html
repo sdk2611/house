@@ -1,7 +1,11 @@
 {% extends 'house/base.html' %}
 
 {% block content %}
-    <h1>Редактирование дома</h1>
+    {% if form.address.value %}
+        <h1>Редактирование дома</h1>
+    {% else %}
+        <h1>Добавление дома</h1>
+    {% endif %}
     <form method="POST" class="house-form">{% csrf_token %}
         <div class="row">
             <div class="col-md-8">

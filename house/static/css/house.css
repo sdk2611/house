@@ -40,7 +40,8 @@ h1 {
 }
 
 p, .btn {
-    font-family: 'Gabriela', serif;
+    /* font-family: 'Gabriela', serif; */
+    font-family: 'Roboto', sans-serif;
     font-size: 12pt
 }
 
@@ -108,3 +109,9 @@ p, .btn {
  .pagination {
      text-align: center;
  }
+
+select:disabled {
+    background-color :#ffffff;
+    color:#000000;
+    border-color: #000000;
+}
