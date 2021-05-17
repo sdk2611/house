@@ -1,5 +1,7 @@
 {% extends "house/base.html" %}
 
+{% block left_sidebar %}
+{% endblock %}
 {% block content %}
     {% if form.errors %}
         <p>{{ form.errors }}</p>
@@ -21,4 +23,6 @@
         <input type="submit" value="Войти" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
+{% endblock %}
+{% block right_sidebar %}
 {% endblock %}

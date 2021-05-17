@@ -206,7 +206,7 @@ class ResidentialPremises(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.PROTECT, verbose_name = 'Кем создано')
 
     def __str__(self):
-        return self.PremisesNum
+        return str(self.PremisesNum)
 
 # КОМНАТЫ
 class LivingRoom(models.Model):

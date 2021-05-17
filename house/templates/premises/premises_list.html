@@ -18,12 +18,17 @@
             {% endif %}
         </span></h3>
     </div>
-    {% for house in page_obj.object_list %}
-        <div class="house-detail">
-            <h3><a href="{% url 'house_detail' pk=house.pk %}">{{ house.address }}</a></h3>
-            <p>Полный адрес: {{ house.fullAddress }}, Тип дома: {{ house.get_house_type_display }}, Этажей: {{ house.FloorCount}}, Подъездов: {{house.entrance_set.all.count}},
-            <a href="{% url 'premises_list' house_id=house.pk entrance_id=0 %}">Помещений: {{ house.residentialpremises_set.all.count }}</a></p>
-            <p>Общая площадь: {{ house.TotalSquare|floatformat }} кв. м., Дата ввода в эксплуатацию: {{ house.UsedYear }}</p>
+    {% if page_obj.object_list.count == 0 %}
+        <h3>Помещения отсутствуют</h3>
+    {% endif %}
+    {% for premises in page_obj.object_list %}
+        <div class="premises-detail">
+            <h3>Помещение № {{ premises.PremisesNum }}</h3>
+            <p><b>Подъезд:</b> {{ premises.Entrance|default_if_none:"Нет" }}<b>, Характеристика:</b> {{ premises.get_PremisesCharacteristic_display }}</p>
+            <p>Кадастровый номер: {{ premises.CadastralNumber}}, Идентификатор в ГИС ЖКХ: {{premises.UniqueNumber}}</p>
+            <p>Общая площадь: {{ premises.TotalArea|floatformat }} кв. м., Жилая площадь: {{ premises.GrossArea|floatformat }} кв. м.
+                Комнат : {{LivingRoom.premises_set.all|length}}
+            </p>
         </div>
     {% endfor %}
     <div class="pagination center-block">
@@ -45,8 +50,6 @@
     </div>
 {% endblock %}
 {% block right_sidebar %}
-    <h3><a class="btn btn-default" href="{% url 'house_new' %}">Добавить дом</a></h3>
+    <h3><a class="btn btn-default" href="">Добавить помещение</a></h3>
 {% endblock %}
-
-
 

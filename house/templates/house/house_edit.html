@@ -1,21 +1,19 @@
 {% extends 'house/base.html' %}
 
 {% block content %}
+    <h2>
     {% if form.address.value %}
-        <h1>Редактирование дома</h1>
+        Редактирование дома
     {% else %}
-        <h1>Добавление дома</h1>
+        Добавление дома
     {% endif %}
+    </h2>
     <form method="POST" class="house-form">{% csrf_token %}
         <div class="row">
-            <div class="col-md-8">
-                {{ form.as_p }}
-            </div>
-            <div class="col-md-4">
-                <p><button type="submit" class="save btn btn-default">Сохранить</button></p>
-                <br>
-                <p style="display: inline-block; text-align: center;"><h2>Подъезды и помещения</h2></p>
-            </div>
+            {{ form.as_p }}
         </div>
     </form>
+{% endblock %}
+{% block right_sidebar %}
+    <h3><button type="submit" class="save btn btn-default">Сохранить</button></h3>
 {% endblock %}

@@ -1,13 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator
-from .models import house
+from .models import house, ResidentialPremises
 from .forms import HouseForm, HouseFormView
 from django.contrib.auth.decorators import login_required
 from django.views import generic
-from django.db.models import F
+from django.db.models import F, Q
 
 # Create your views here. 
+def main_page(request):
+    return render(request, 'main.html')
+
 def house_list(request):
     houses = house.objects.order_by('address')
     paginator = Paginator(houses, 10)
@@ -54,3 +57,13 @@ def house_remove(request, pk):
     _house = get_object_or_404(house, pk=pk)
     _house.delete()
     return redirect('house_list')
+
+def premises_list(request, house_id, entrance_id):
+    if house_id == 0:
+        premises = ResidentialPremises.objects.order_by('PremisesNum')
+    else:
+        premises = ResidentialPremises.objects.filter(Q(house = house_id), Q(Entrance = entrance_id) | Q(Entrance = None)).order_by('PremisesNum')
+    paginator = Paginator(premises, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'premises/premises_list.html', {'page_obj': page_obj})

@@ -1,17 +1,30 @@
 {% extends 'house/base.html' %}
 
 {% block content %}
+<div class="row">
+    {% if user.is_authenticated %}
+    <h2>{{ house.address }} 
+        <a class="btn btn-default" href="{% url 'house_edit' pk=house.pk %}"><span title="Редактировать дом" class="glyphicon glyphicon-pencil"></span></a>
+    {% else%}
+    {{ house.address }}</h2>
+    {% endif %}
+</div>
+<div class="row">
     <div class="house">
-        {% if user.is_authenticated %}
-            <h1>{{ house.address }} 
-                <a class="btn btn-default" href="{% url 'house_edit' pk=house.pk %}"><span title="Редактировать дом" class="glyphicon glyphicon-pencil"></span></a>
-                <!-- <a class="btn btn-default" href="{% url 'house_remove' pk=house.pk %}"><span title="Удалить дом" class="glyphicon glyphicon-remove"></span></a></h1> -->
-        {% else%}
-            <h1>{{ house.address }}</h1>
-        {% endif %}
         <form method = "GET" class="house-form">
             {% csrf_token %}
             {{ form.as_p }}
         </form>
     </div>
+</div>
+{% endblock %}
+{% block right_sidebar %}
+<h3>
+    <a class="btn btn-default" href="">Информация о подъездах</a>
+    <a class="btn btn-default" href="{% url 'premises_list' house_id=house.pk entrance_id=0 %}">Информация о помещениях</a>
+    <a class="btn btn-default" href="">ОДПУ</a>
+    <a class="btn btn-default" href="">Лицевые счета</a>
+    <a class="btn btn-default" href="">Лифты</a>
+    <a class="btn btn-default" href="">Технические характеристики</a>
+</h3>
 {% endblock %}
