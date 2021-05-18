@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-9" style="text-align: right;">
                         {% if user.is_authenticated %}
-                            <h3>Здравствуйте, {{ user.username }} &nbsp
+                            <h3>Здравствуйте, {{user.first_name}} {{user.last_name}} ({{ user.username }}) &nbsp
                             <a href="{% url 'logout' %}" title="Вход в систему" class="glyphicon glyphicon-log-out"></a>
                             </h3>
                         {% else %}
@@ -39,9 +39,9 @@
             <div class="content container-fluid">
                 <div class="col-md-3">
                     {% block left_sidebar %}
-                    <div style="text-align: center;">
+                    <div style="text-align: left;">
                         <h3><a href="{% url 'house_list' %}">Наши дома</a></h3>
-                        <h3><a href="/premises/0/0/">Помещения</a></h3>
+                        <h3><a href="/premises/0/0/">Квартиры</a></h3>
                     </div>
                     {% endblock %}
                 </div>

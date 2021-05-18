@@ -12,7 +12,7 @@ def main_page(request):
     return render(request, 'main.html')
 
 def house_list(request):
-    houses = house.objects.order_by('address')
+    houses = house.objects.all()
     paginator = Paginator(houses, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -60,9 +60,13 @@ def house_remove(request, pk):
 
 def premises_list(request, house_id, entrance_id):
     if house_id == 0:
-        premises = ResidentialPremises.objects.order_by('PremisesNum')
+        premises = ResidentialPremises.objects.extra(
+            select={'myinteger': 'CAST(PremisesNum AS INTEGER)'}
+            ).order_by('myinteger')
     else:
-        premises = ResidentialPremises.objects.filter(Q(house = house_id), Q(Entrance = entrance_id) | Q(Entrance = None)).order_by('PremisesNum')
+        premises = ResidentialPremises.objects.filter(Q(house = house_id), Q(Entrance = entrance_id) | Q(Entrance = None)).extra(
+            select={'myinteger': 'CAST(PremisesNum AS INTEGER)'}
+            ).order_by('myinteger')
     paginator = Paginator(premises, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

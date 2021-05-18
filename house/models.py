@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
+from django.db.models import Index
 
 # МКД
 class house(models.Model):
@@ -49,7 +50,7 @@ class house(models.Model):
     #   Полный Адрес строкой
     fullAddress = models.CharField(max_length = 200, verbose_name='Полный адрес')
     #   Глобальный уникальный идентификатор дома
-    houseguid = models.CharField(max_length = 36, unique=True, verbose_name = 'Идентификатор в ФИАС')   
+    houseguid = models.CharField(max_length = 36, unique=True, verbose_name = 'Идентификатор в ФИАС')
     #   Уникальный номер дома в ГИС ЖКХ (например, MBp00381)
     UniqueNumber = models.CharField(max_length = 10, unique=True, blank = True, null = True, verbose_name = 'Идентификатор в ГИС ЖКХ')
     #   Guid записи родительского объекта (улицы, города, населенного пункта и т.п.)
@@ -135,7 +136,11 @@ class house(models.Model):
     created_date = models.DateTimeField(default = timezone.now, verbose_name = 'Когда создано')
     #   Автор
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.PROTECT, verbose_name = 'Кем создано')
-
+    class Meta:
+            indexes = [
+                models.Index(fields=['houseguid',]),
+            ]
+            ordering = ['address']
     def __str__(self):
         return self.address
 
@@ -153,6 +158,8 @@ class Entrance(models.Model):
     StoreysCount = models.PositiveSmallIntegerField(blank = True, verbose_name = 'Этажность')
     #   CreationYear 	YearType 	0..1 	Год постройки
     CreationYear = models.DateField(blank = True, verbose_name = 'Год постройки')
+    class Meta:
+        ordering = ['EntranceNum']
 
     def __str__(self):
         return self.EntranceNum
@@ -204,6 +211,8 @@ class ResidentialPremises(models.Model):
     created_date = models.DateTimeField(default = timezone.now, verbose_name = 'Когда создано')
     #   Автор
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.PROTECT, verbose_name = 'Кем создано')
+    class Meta:
+        ordering = ['PremisesNum']
 
     def __str__(self):
         return str(self.PremisesNum)
@@ -234,6 +243,8 @@ class LivingRoom(models.Model):
     created_date = models.DateTimeField(default = timezone.now, verbose_name = 'Когда создано')
     #   Автор
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.PROTECT, verbose_name = 'Кем создано')
+    class Meta:
+        ordering = ['RoomNumber']
 
     def __str__(self):
         return self.RoomNumber

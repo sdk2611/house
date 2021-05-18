@@ -23,7 +23,7 @@
     {% endif %}
     {% for premises in page_obj.object_list %}
         <div class="premises-detail">
-            <h3>Помещение № {{ premises.PremisesNum }}</h3>
+            <h3>Квартира № {{ premises.PremisesNum }}</h3>
             <p><b>Подъезд:</b> {{ premises.Entrance|default_if_none:"Нет" }}<b>, Характеристика:</b> {{ premises.get_PremisesCharacteristic_display }}</p>
             <p>Кадастровый номер: {{ premises.CadastralNumber}}, Идентификатор в ГИС ЖКХ: {{premises.UniqueNumber}}</p>
             <p>Общая площадь: {{ premises.TotalArea|floatformat }} кв. м., Жилая площадь: {{ premises.GrossArea|floatformat }} кв. м.
@@ -50,6 +50,6 @@
     </div>
 {% endblock %}
 {% block right_sidebar %}
-    <h3><a class="btn btn-default" href="">Добавить помещение</a></h3>
+    <h3><a class="btn btn-default" href="">Добавить квартиру</a></h3>
 {% endblock %}
 
