@@ -22,7 +22,7 @@
         <div class="house-detail">
             <h3><a href="{% url 'house_detail' pk=house.pk %}">{{ house.address }}</a></h3>
             <p>Полный адрес: {{ house.fullAddress }}, Тип дома: {{ house.get_house_type_display }}, Этажей: {{ house.FloorCount}}, Подъездов: {{house.entrance_set.all.count}},
-            <a href="{% url 'premises_list' house_id=house.pk entrance_id=0 %}">Помещений: {{ house.residentialpremises_set.all.count }}</a></p>
+            <a href="{% url 'premises_list' house_id=house.pk entrance_id=0 %}">Квартир: {{ house.residentialpremises_set.all.count }}</a></p>
             <p>Общая площадь: {{ house.TotalSquare|floatformat }} кв. м., Дата ввода в эксплуатацию: {{ house.UsedYear }}</p>
         </div>
     {% endfor %}
