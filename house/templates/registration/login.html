@@ -1,8 +1,12 @@
 {% extends "house/base.html" %}
 
+{% block hamburger %}
+{% endblock %}   
 {% block left_sidebar %}
 {% endblock %}
 {% block content %}
+<div class="row justify-content-md-center">
+    <div class="login">
     {% if form.errors %}
         <p>{{ form.errors }}</p>
     {% endif %}
@@ -23,6 +27,8 @@
         <input type="submit" value="Войти" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
+</div>
+</div>
 {% endblock %}
 {% block right_sidebar %}
 {% endblock %}

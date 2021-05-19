@@ -15,10 +15,10 @@ body {
 
 .page-header, .page-footer {
     background-color: #ff9400;
-    margin-top: 0;
+    margin: 0;
     padding: 5px 5px 5px 5px;
 }
-@media (min-width: 576px){
+@media (min-width: 768px){
     .page-header, .page-footer {
         padding: 20px 20px 20px 20px;
     }
@@ -30,17 +30,32 @@ body {
     text-decoration: none;
 } 
 
-.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #ffffff;
+@media (max-width: 767px){
+    .user, .left-sidebar {
+        visibility: hidden;
+        display: none;
+    }
+}  
+ .container-fluid{
+    min-height: 70vh;
+}
+.left-sidebar{
+    min-height:70vh;
 }
 
-.content {
-    margin-left: 10px;
+.login{
+    margin-top: 40px;
 }
-@media (min-width: 576px){
-.content {
-    margin-left: 20px;
-}
+
+@media (min-width: 768px){
+    .navbar, .navbar-static-top {
+        visibility: hidden;
+        display: none;
+    }
+}    
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
 }
 
 .page-footer {
@@ -60,17 +75,14 @@ body {
     border-left: 1px solid black;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, .page-header, .page-footer, .nav {
     font-family: 'Comfortaa', cursive;
 }
 
 p, .btn {
-    /* font-family: 'Gabriela', serif; */
     font-family: 'Roboto', sans-serif;
     font-size: 12pt
-    /* margin: 5px; */
 }
-
 .btn-default {
     padding: 5px 5px 5px 5px;
     margin: 2px;
@@ -102,8 +114,7 @@ p, .btn {
 }
 
  form {
-    display: table; 
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   
   @media (min-width: 576px) {
@@ -119,7 +130,7 @@ p, .btn {
     text-align: left;
 }
 
-   form  p > input {
+   form  p > input, form  p > select {
     width: 100%;
   }
 
@@ -150,3 +161,50 @@ hr {
     color: red; /* Цвет линии для IE6-7 */
     height: 2px; /* Толщина линии */
    }
+
+.nav{
+    margin-top: 20px;
+    font-size: large;
+}
+
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+/* Стиль кнопок, которые используются, чтобы открыть и закрыть панель аккордеона */
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+    text-align: left;
+    border:none;
+    outline:none;
+    transition: 0.4s;
+    margin: 1px;
+  }
+  
+  /* Добавьте цвет фона к кнопке, если она нажата (добавьте класс .active с помощью JS) и при наведении на нее указателя мыши (наведите курсор мыши) */
+  .active, .accordion:hover {
+    background-color: #ccc;
+  }
+  
+  /* Стиль панели аккордеона. Примечание: по умолчанию скрыто */
+  .panel {
+    padding: 0 5px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    border: 1px solid;
+  }
+
+  .navbar {
+    background-color: #ffffff !important;
+    color: #428bca !important;
+    font-size: 24px;
+    border-color: #ff9400;
+}
