@@ -102,9 +102,9 @@ p, .btn {
 } */
 
 
-.house {
+/* .house {
     margin-bottom: 70px;
-}
+} */
 
 
 .house h1 a, .house h1 a:visited {
@@ -114,7 +114,7 @@ p, .btn {
 }
 
  form {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   @media (min-width: 576px) {
