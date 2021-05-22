@@ -1,7 +1,7 @@
 from django import forms
 from django.utils import timezone
 from django.forms import SelectDateWidget, TextInput
-from .models import house
+from .models import house, ResidentialPremises
 
 class HouseForm(forms.ModelForm):
 
@@ -49,4 +49,13 @@ class HouseFormView(forms.ModelForm):
         self.fields['management_org'].disabled = True
         self.fields['created_date'].widget.attrs['readonly'] = True
         self.fields['author'].disabled = True
+
+class PremisesForm(forms.ModelForm):
+
+    error_css_class = 'error'
+    required_css_class = 'required'
+
+    class Meta:
+        model = ResidentialPremises
+        exclude = ['created_date', 'author']
 

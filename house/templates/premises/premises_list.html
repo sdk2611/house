@@ -22,7 +22,16 @@
         <h3>Помещения отсутствуют</h3>
     {% endif %}
     {% for premises in page_obj.object_list %}
-        <button class="accordion"><h3>Квартира № {{ premises.PremisesNum }}</h3></button>
+        <button class="accordion">
+            <h3>Квартира № {{ premises.PremisesNum }}
+            {% if user.is_authenticated %}
+            <span style="float: right;">
+            <a class="btn btn-default" href="{% url 'premises_edit' house_id=premises.house.pk entrance_id=0 pk=premises.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-default" href="{% url 'premises_remove' house_id=premises.house.pk entrance_id=0 pk=premises.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+            </span>
+            {% endif %}
+            </h3>
+        </button>
         <div class="panel">
             <p><b>Подъезд:</b> {{ premises.Entrance|default_if_none:"Нет" }}<b>, Характеристика:</b> {{ premises.get_PremisesCharacteristic_display }}</p>
             <p>Кадастровый номер: {{ premises.CadastralNumber}}, Идентификатор в ГИС ЖКХ: {{premises.UniqueNumber}}</p>
@@ -30,7 +39,6 @@
                 Комнат : {{LivingRoom.premises_set.all|length}}
             </p>
         </div>
-        
         <!-- <div class="premises-detail">
             <h3>Квартира № {{ premises.PremisesNum }}</h3>
             <p><b>Подъезд:</b> {{ premises.Entrance|default_if_none:"Нет" }}<b>, Характеристика:</b> {{ premises.get_PremisesCharacteristic_display }}</p>
@@ -59,5 +67,5 @@
     </div>
 {% endblock %}
 {% block right_sidebar %}
-    <h3><a class="btn btn-default" href="">Добавить квартиру</a></h3>
+    <h3><a class="btn btn-default" href="{% url 'premises_new' house_id=house entrance_id=0 %}">Добавить квартиру</a></h3>
 {% endblock %}

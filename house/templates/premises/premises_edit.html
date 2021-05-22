@@ -2,13 +2,13 @@
 
 {% block content %}
     <h2>
-    {% if form.address.value %}
-        Редактирование дома
+    {% if form.PremisesNum.value %}
+        Редактирование квартиры
     {% else %}
-        Добавление дома
+        Добавление квартиры
     {% endif %}
     </h2>
-    <form method="POST" class="house-form">{% csrf_token %}
+    <form method="POST" class="premises-form">{% csrf_token %}
         <div class="row">
             {{ form.as_p }}
         </div>

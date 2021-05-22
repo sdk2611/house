@@ -179,7 +179,7 @@ class ResidentialPremises(models.Model):
     #   PremisesNum 	Номер помещения
     PremisesNum = models.CharField(max_length = 10, verbose_name = 'Номер помещения')
     #   Уникальный номер помещения в ГИС ЖКХ (например, MBp00381)
-    UniqueNumber = models.CharField(max_length = 10, unique=True, blank = True, null = True, verbose_name = 'Идентификатор в ГИС ЖКХ')
+    UniqueNumber = models.CharField(max_length = 14, unique=True, blank = True, null = True, verbose_name = 'Идентификатор в ГИС ЖКХ')
     #   ID дома
     house = models.ForeignKey(             
         'house',
@@ -190,6 +190,7 @@ class ResidentialPremises(models.Model):
     Entrance = models.ForeignKey(
         'Entrance', 
         on_delete = models.CASCADE,
+        blank = True,
         null = True,
         verbose_name = 'Подъезд',
     )
@@ -202,11 +203,11 @@ class ResidentialPremises(models.Model):
         verbose_name = 'Характеристика',
     )
     #   TotalArea Общая площадь жилого помещения по паспорту помещения
-    TotalArea = models.DecimalField(max_digits=25, decimal_places=4, blank = True, verbose_name = 'Общая площадь')
+    TotalArea = models.DecimalField(max_digits=25, decimal_places=4, blank = True, null = True, verbose_name = 'Общая площадь')
     #   GrossArea 	Жилая площадь жилого помещения по паспорту помещения
-    GrossArea = models.DecimalField(max_digits=25, decimal_places=4, blank = True, verbose_name = 'Жилая площадь')
+    GrossArea = models.DecimalField(max_digits=25, decimal_places=4, blank = True, null = True, verbose_name = 'Жилая площадь')
     #   Кадастровый номер
-    CadastralNumber = models.CharField(max_length = 40, blank = True, verbose_name = 'Кадастровый номер')
+    CadastralNumber = models.CharField(max_length = 40, blank = True, null = True, verbose_name = 'Кадастровый номер')
     #   Дата создания
     created_date = models.DateTimeField(default = timezone.now, verbose_name = 'Когда создано')
     #   Автор
